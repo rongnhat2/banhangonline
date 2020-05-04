@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use DB;
 
 class FrontController extends Controller
 {
     public function trangchu(){
-        return view('user.trangchu');
+
+        $categories = DB::table('category')->get();
+        // dd($categories);
+        return view('user.trangchu', compact('categories'));
     }
     
     public function danhmuc(){

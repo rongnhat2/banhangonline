@@ -24,10 +24,12 @@
 					</div>
 					<div class="I-respon_category">
 						<ul>
-							<li><a href="">Áo</a></li>
-							<li><a href="">Áo Khoác</a></li>
+							<?php foreach ($categories as $key => $value): ?>
+								<li><a href=""><?php echo $value->category_name ?></a></li>
+							<?php endforeach ?>
+							<!-- <li><a href="">Áo Khoác</a></li>
 							<li><a href="">Quần</a></li>
-							<li><a href="">Phụ Kiện</a></li>
+							<li><a href="">Phụ Kiện</a></li> -->
 						</ul>
 						<div class="respon_search">
 							<input type="" name="" placeholder="Tìm kiếm tại Style Shop">
@@ -95,18 +97,11 @@
 					<div class="wrapper">
 						<div class="sub_category_wrapper">
 							<div class="sub_category_list_item">
-								<a href="#" class="sub_category_item">
-									Áo
-								</a>
-								<a href="#" class="sub_category_item">
-									Áo Khoác
-								</a>
-								<a href="#" class="sub_category_item">
-									Quần 
-								</a>
-								<a href="#" class="sub_category_item">
-									Phụ Kiện
-								</a>
+								<?php foreach ($categories as $key => $value): ?>
+									<a href="#" class="sub_category_item">
+										<?php echo $value->category_name ?>
+									</a>
+								<?php endforeach ?>
 							</div>
 						</div>
 					</div>
@@ -816,8 +811,8 @@
 			</div>
 		</div>
 	</body>
-	<script src="js/bootstrap3.js"></script>
-	<script src="js/effect_custom.js"></script>
+	<script src="{{ asset('user/js/bootstrap3.js') }}"></script>
+	<script src="{{ asset('user/js/effect_custom.js') }}"></script>
 </html>
 
 

@@ -47,8 +47,8 @@
 									<a href="#" class="sub_item">
 										Trang Cá Nhân
 									</a>
-									<a href="#" class="sub_item">
-										
+									<a href="/category" class="sub_item">
+										Danh mục
 									</a>
 								</div>
 							</div>
