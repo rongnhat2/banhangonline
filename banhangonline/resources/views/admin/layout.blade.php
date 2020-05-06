@@ -13,6 +13,9 @@
 		<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 	</head>
 	<body> 
+        <video preload="auto" autoplay="autoplay" loop="loop"> 
+            <source src="{{ asset('images/10.webm') }}" type="video/mp4"> 
+        </video>
 		<header>
 			<div class="I-user_header">
 				<div class="wrapper">
@@ -100,6 +103,11 @@
 							<div class="item_nav">
 								<div class="link_nav">
 									<i class="fas fa-images"></i>
+								</div>
+								<div class="dropdown">
+									<a href="/gallery" class="sub_item">
+										Thư Viện Ảnh
+									</a>
 								</div>
 							</div>
 							<div class="item_nav">

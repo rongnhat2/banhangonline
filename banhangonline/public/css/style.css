@@ -117,7 +117,7 @@
 	height: 100%;
 	background-color: #fff;
 	border-radius: 5px;
-    box-shadow: 0 0px 8px 2px #ccc;
+    box-shadow: 0 0px 8px 2px #000;
 }
 .I-form_input{
 	width: 100%;
@@ -132,7 +132,7 @@
 	height: 100%;
 	background-color: #fff;
 	border-radius: 5px;
-    box-shadow: 0 0px 8px 2px #ccc;
+    box-shadow: 0 0px 8px 2px #000;
     /*overflow: hidden;*/
 }
 .I-form_input .form_input_wrapper .form_input .title_form{
@@ -264,7 +264,7 @@
 	padding: 10px 0;
 	display: none;
 	z-index: 999;
-    box-shadow: 0 0px 8px 2px #ccc;
+    box-shadow: 0 0px 8px 2px #000;
 }
 .I-form_input .form_input_wrapper .form_input .body_form .select_form.is-open .select_wrapper .option_wrapper{
 	display: block;
@@ -375,7 +375,7 @@
 	border-radius: 5px;
 	background-color: #fff;
 	padding: 10px;
-    box-shadow: 0 0px 8px 2px #ccc;
+    box-shadow: 0 0px 8px 2px #000;
 }
 .I-table .table_wrapper .title_table{
 	width: 100%;

@@ -791,3 +791,19 @@
     width: 100%;
 }
 
+
+.I-form{
+    margin: 0 auto;
+    width: 50%;
+    overflow: hidden;
+    padding: 50px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.I-form .title{
+    width: 100%;
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    text-align: center;
+}

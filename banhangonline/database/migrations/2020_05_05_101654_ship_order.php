@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ComboItem extends Migration
+class ShipOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class ComboItem extends Migration
      */
     public function up()
     {
-        Schema::create('combo_item', function (Blueprint $table) {
-            $table->id();
-            $table->integer('combo_id');
-            $table->string('combo_item_name');
-            $table->integer('id_item_01');
-            $table->integer('id_item_02');
-            $table->integer('id_item_03');
+        Schema::create('ship_order', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('orders_id');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class ComboItem extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('combo_item');
+        Schema::dropIfExists('ship_order');
     }
 }

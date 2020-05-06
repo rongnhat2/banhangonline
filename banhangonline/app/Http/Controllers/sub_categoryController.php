@@ -5,26 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Hash;
 use DB;
-use App\Category;
+use App\Sub_category;
 
-class CategoryController extends Controller
+class sub_categoryController extends Controller
 {
+    private $Sub_category;
 
-    private $category;
-
-    public function __construct(Category $category)
+    public function __construct(Sub_category $Sub_category)
     {
-        $this->category = $category;
+        $this->Sub_category = $Sub_category;
     }
 
 
-    public function index()
+    public function index($c_id)
     {
         $categories = DB::table('category')->get();
-        return view('admin.category.index', compact('categories'));
+        return view('admin.sub_category.index', compact('categories'));
     }
 
-    public function create()
+    public function create($c_id)
     {
         $categories = $this->category->all();
         return view('admin.category.add', compact('categories'));
@@ -51,7 +50,7 @@ class CategoryController extends Controller
      * @param $id
      * show form edit
      */
-    public function edit($id)
+    public function edit($c_id ,$id)
     {
         $category = $this->category->findOrfail($id);
         return view('admin.category.edit', compact('category'));

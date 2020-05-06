@@ -34,6 +34,13 @@ Route::get('/demo_ajax', 'CartController@demo_ajax')->name('demo_ajax');
 Route::get('/test_function_auth', 'CartController@test_function_auth')->name('test_function_auth');
 
 
+Route::get('/customer_login', 'FrontController@login')->name('customer.login');
+Route::post('/customer_login', 'CustomerController@postLogin')->name('customer.postLogin');
+
+Route::get('/customer_register', 'FrontController@register')->name('customer.register');
+Route::post('/customer_register', 'CustomerController@store')->name('customer.store');
+
+
 // Route::get('add-to-cart/{id}',[
 //     "as"=>'them-gio-hang',
 //     "uses"=>'itemController@getAddToCart'
@@ -57,6 +64,24 @@ Route::get('/admin', 'adminController@admin')->name('admin');
 
 Route::middleware(['auth'])->group(function () {
 
+    // modulle gallery
+    Route::prefix('gallery')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'GalleryController@index')->name('gallery.index');
+        Route::get('/create', 'GalleryController@create')->name('gallery.add');
+        Route::post('/create', 'GalleryController@store')->name('gallery.store');
+        // Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
+        // Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
+        // Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+    });
+    
     // modulle category
     Route::prefix('category')->group(function () {
 
@@ -73,6 +98,24 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', 'CategoryController@edit')->name('category.edit');
         Route::post('/edit/{id}', 'CategoryController@update')->name('category.edit');
         Route::get('/delete/{id}', 'CategoryController@delete')->name('category.delete');
+    });
+
+    // modulle category
+    Route::prefix('sub_category')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/{c_id}', 'sub_categoryController@index')->name('sub_category.index');
+        Route::get('/{c_id}/create', 'sub_categoryController@create')->name('sub_category.add');
+        Route::post('/create', 'sub_categoryController@store')->name('sub_category.store');
+        Route::get('/{c_id}/edit/{id}', 'sub_categoryController@edit')->name('sub_category.edit');
+        Route::post('/edit', 'sub_categoryController@update')->name('sub_category.edit');
+        Route::get('/{c_id}/delete/{id}', 'sub_categoryController@delete')->name('sub_category.delete');
     });
 
     // modulle user

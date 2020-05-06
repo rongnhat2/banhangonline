@@ -20,7 +20,6 @@
 					        <th>Tên Danh Mục</th>
 					        <th>Số Lượng Sản Phẩm</th>
 					        <th>Trạng Thái</th>
-					        <th>Danh Mục Phụ</th>
 					        <th>Sửa</th>
 					        <th>Xóa</th>
 				      	</tr>
@@ -41,11 +40,6 @@
 						        		Tạm Ẩn
 						        	</div>
 					       		<?php endif ?>
-					        </td>
-					        <td>
-					        	<a href="{{ route('sub_category.edit', ['id' => $category->id]) }}" class="action_table">
-					        		<i class="far fa-edit"></i>
-					        	</a>
 					        </td>
 					        <td>
 					        	<a href="{{ route('category.edit', ['id' => $category->id]) }}" class="action_table">

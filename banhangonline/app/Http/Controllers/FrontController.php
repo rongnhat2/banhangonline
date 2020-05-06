@@ -27,4 +27,14 @@ class FrontController extends Controller
         return view('user.sanpham');
     }
     
+    public function login(){
+        $categories = DB::table('category')->get();
+        return view('user.login', compact('categories'));
+    }
+    
+    public function register(){
+        $categories = DB::table('category')->get();
+        return view('user.register', compact('categories'));
+    }
+    
 }
