@@ -10,7 +10,7 @@
 						Danh Sách Danh Mục
 					</div>
 					<div class="title_side">
-						<a href="{{ route('category.add') }}" class="I-button bg_primary text_light">Thêm</a>
+						<a href="{{ route('sub_category.add', ['c_id' => $c_id]) }}" class="I-button bg_primary text_light">Thêm</a>
 					</div>
 				</div>
 				<table class="table table-bordered">
@@ -19,35 +19,29 @@
 					        <th>ID</th>
 					        <th>Tên Danh Mục</th>
 					        <th>Số Lượng Sản Phẩm</th>
-					        <th>Trạng Thái</th>
 					        <th>Sửa</th>
 					        <th>Xóa</th>
 				      	</tr>
 			    	</thead>
 			    	<tbody>
-               			@foreach($categories as $category)
+               			@foreach($sub_category as $value)
 				      	<tr>
 					        <td>{{ $loop->index + 1 }}</td>
-					        <td>{{ $category->category_name }}</td>
-					        <td>{{ $category->category_name }}</td>
+					        <td>{{ $value->sub_category_name }}</td>
 					        <td>
-					        	<?php if ( $category->category_status  == 1): ?>
-						        	<div class="status_table bg_success text_light">
-						        		Hiển Thị
-						        	</div>
-					        	<?php elseif( $category->category_status  == 0): ?>
-						        	<div class="status_table bg_danger text_light">
-						        		Tạm Ẩn
-						        	</div>
-					       		<?php endif ?>
-					        </td>
+					        	<?php if (empty ($count_item[$value->id][0])): ?>
+						        	<?php echo 0 ?>
+					        	<?php else:  ?>
+					        		<?php echo $count_item[$value->id][0]->total ?>
+						        <?php endif ?>
+						    </td>
 					        <td>
-					        	<a href="{{ route('category.edit', ['id' => $category->id]) }}" class="action_table">
+					        	<a href="{{ route('sub_category.edit', ['c_id' => $c_id, 'id' => $value->id]) }}" class="action_table">
 					        		<i class="far fa-edit"></i>
 					        	</a>
 					        </td>
 					        <td>
-					        	<a href="{{ route('category.delete', ['id' => $category->id]) }}" class="action_table">
+					        	<a href="{{ route('sub_category.delete', ['c_id' => $c_id, 'id' => $value->id]) }}" class="action_table">
 					        		<i class="far fa-trash-alt"></i>
 					        	</a>
 					        </td>

@@ -63,12 +63,15 @@ class admin_seed extends Seeder
 	        "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
 	        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
 	    ]);
-        DB::table('users')->insert([
+        $id = DB::table('users')->insertGetId([
             'name'              => 'admin',
             'email'             => 'admin@admin.com',
             'password'          => Hash::make('12345678'),
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+        ]);
+        DB::table('user_detail')->insertGetId([
+            'user_id'              => $id,
         ]);
 
 

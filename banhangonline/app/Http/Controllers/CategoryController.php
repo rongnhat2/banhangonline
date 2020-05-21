@@ -20,8 +20,21 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = DB::table('category')->get();
-        return view('admin.category.index', compact('categories'));
+        $total_item = DB::raw('count(*) as total');
+
+        // lấy tất cả danh mục
+        $all_category = DB::table('category')->get();
+        $count_item = [];
+        // thống kê số lượng sản phẩm
+        foreach ($all_category as $key => $value) {
+            $count_item[$value->id] = 0;
+            $count_item[$value->id] = DB::table('item')
+                                        ->where('item.category_id', '=', $value->id)
+                                        ->select( $total_item)
+                                        ->groupBy('item.category_id')
+                                        ->get();
+        }
+        return view('admin.category.index', compact('all_category', 'count_item'));
     }
 
     public function create()
@@ -99,4 +112,5 @@ class CategoryController extends Controller
         }
 
     }
+
 }

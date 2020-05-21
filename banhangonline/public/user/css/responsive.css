@@ -105,6 +105,28 @@ body {
 }
 
 /* ...................................... Display ...................................... */
+
+.login_wrapper{
+    display: none;
+}
+.login_wrapper a{ }
+.login_wrapper .user_wrapper{ }
+.login_wrapper .user_wrapper .username{ }
+.login_wrapper:hover .user_wrapper{ }
+.login_wrapper .user_wrapper a{ }
+
+.user_login{
+    border-top: 1px solid #000;
+}
+.user_login a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    color: #000;
+}
+
 .I-respon_category{
     position: fixed;
     display: block;
@@ -120,6 +142,7 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 .I-respon_category ul li{
     float: left;
@@ -453,6 +476,42 @@ body {
 }
 
 
+.I-order{
+    padding: 10px 0;
+}
+.I-order .calc_item{ }
+.I-order .calc_item .down_calc{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.I-order .calc_item .val_calc{
+    width: 40px;
+    margin: 0 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+.I-order .calc_item .up_calc{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.I-form{
+    width: 100%;
+    padding: 30px;
+}
 .skin_item{
     width: 25% !important;
     margin: 0 !important;

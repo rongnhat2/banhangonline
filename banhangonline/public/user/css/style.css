@@ -12,6 +12,59 @@
 */
 
 /* ...................................... HEADER ...................................... */
+
+
+
+.I-navigarion{
+    width: 100%;
+    height: 40px;
+}
+.I-navigarion ul{
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    list-style-type: none;
+    height: 100%;
+}
+.I-navigarion ul li{
+    float: left;
+    height: 100%;
+}
+.I-navigarion ul li.sub_menu_wrapper{
+    position: relative;
+}
+.I-navigarion ul li.sub_menu_wrapper:hover .sub_menu{
+    display: block;
+}
+.I-navigarion ul li.sub_menu_wrapper .sub_menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    display: none;
+}
+.I-navigarion ul li.sub_menu_wrapper .sub_menu a{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    height: 100%;
+}
+.I-navigarion ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    height: 100%;
+}
+.I-navigarion ul li a:hover{
+    color: #af6523; 
+}
+
 .navigation_respon{
     display: none;
 }
@@ -111,6 +164,16 @@
     transition: all 300ms ease;
     z-index: 1;
 }
+.shopping_cart a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 20px;
+    margin: 0 10px 0 0;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 5px;
+}
 .shopping_cart .shopping_cart_icon:hover{
     text-decoration: none;
 }
@@ -120,7 +183,39 @@
 .shopping_cart .shopping_cart_icon:hover .icon{
     top: 100%;
 }
-
+.login_wrapper{
+    position: relative;
+    height: 40px;
+}
+.login_wrapper a{
+    height: 100%;
+}
+.login_wrapper .user_wrapper{
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 180px;
+    overflow: hidden;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+.login_wrapper .user_wrapper .username{
+    border-bottom: 1px solid #000;
+    padding: 5px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.login_wrapper:hover .user_wrapper{
+    display: block;
+}
+.login_wrapper .user_wrapper a{
+    border: none;
+    padding: 10px 0;
+    justify-content: flex-start;
+}
 /* ...................................... LAYOUT ...................................... */
 
 .body_content_wrapper{
@@ -695,24 +790,98 @@
     justify-content: center;
 }
 .I-item .content .item_detail .item_size li{
+    position: relative;
     float: left;
     width: calc(20% - 20px);
     height: 30px;
     margin: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 1px solid #000;
     cursor: pointer;
     transition: all 100ms ease;
+    user-select: none;
+}
+.I-item .content .item_detail .item_size li .size_wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 300ms ease;
+}
+.I-item .content .item_detail .item_size li .size_wrapper .size_name{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-item .content .item_detail .item_size li .size_wrapper .size_amount{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-item .content .item_detail .item_size li .size_wrapper .size_text{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .I-item .content .item_detail .item_size li:hover{
     background-color: #000;
     color: #fff;
 }
+.I-item .content .item_detail .item_size input{
+    display: none;
+}
+.I-item .content .item_detail .item_size li:hover .size_wrapper{
+    top: -100%;
+}
 .I-item .content .item_detail .item_size li.is-select{
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
+}
+.I-item .content .item_detail .item_size li.is-select .size_wrapper{
+    top: -200%;
+}
+.I-item .content .item_detail .item_size li.is-block{
+    background-color: #f00;
+    color: #fff;
+}
+.I-item .content .item_detail .item_size li.is-block .size_wrapper{
+    top: -100%;
+}
+.I-item .content .item_detail .item_detail_size{
+    padding: 30px 0;
+    overflow: hidden;
+    width: 100%;
+}
+.I-item .content .item_detail .item_detail_size{
+    padding: 30px 0;
+    overflow: hidden;
+    width: 100%;
+}
+.I-item .content .item_detail .item_detail_size .status_size{
+    width: 100%;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+.I-item .content .item_detail .item_detail_size .status_detail{
+    width: 100%;
+    overflow: hidden;
+    margin: 5px 0;
+    padding: 0 10px;
+}
+.I-item .content .item_detail .item_detail_size .status_detail .size_title{
+    width: 100px;
+    float: left;
+    font-weight: bold;
+}
+.I-item .content .item_detail .item_detail_size .status_detail .size_amount{
+    width: 100px;
+    float: left;
 }
 .I-item .content .item_detail .item_order{
     width: 100%;
@@ -806,4 +975,96 @@
     margin: 0 0 20px 0;
     font-size: 32px;
     text-align: center;
+}
+
+.I-order{
+    margin: 20px 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    padding: 50px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.I-order .order_wrapper{
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+.I-order .order_wrapper .calc_money{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+.I-order .order_wrapper .calc_money span{
+    margin: 0 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: green;
+}
+.I-order .order_wrapper .send_order{
+    margin: 50px 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-order .order_wrapper .send_order button{
+    width: 300px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-order a{
+    cursor: pointer;
+}
+
+.I-order .calc_item{
+    float: left;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+.I-order .calc_item .down_calc{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.I-order .calc_item .val_calc{
+    width: 100px;
+    margin: 0 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+}
+.I-order .calc_item .up_calc{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.I-order table{
+    text-align: center !important;
+}
+.I-order table th{
+    text-align: center !important;
 }

@@ -16,9 +16,8 @@ class UserDetail extends Migration
         Schema::create('user_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id');
-            $table->integer('phone');
-            $table->string('address');
-            $table->integer('idcode');
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

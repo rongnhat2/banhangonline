@@ -15,8 +15,24 @@ $('.navigation_respon').on('click', function(){
 })
 
 
-$('.I-item').find('.item_size').find('li').on('click', function(){
-	$(this).toggleClass('is-select')
+$('.I-item').find('.item_size').find('.size_item').on('click', function(){
+	var checkBoxes = $(this).find('input');
+	
+	// bật tắt checked
+	// checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+
+	// bật checked
+	checkBoxes.prop("checked", true);
+	$(this).addClass('is-select')
+})
+
+$('.I-item').find('.item_size').find('li').each(function(index){
+	var parent_check = $(this).find('input');
+	if(parent_check.prop("checked") == true){
+		parent_check.parent().addClass('is-select');
+	}else{
+		parent_check.parent().removeClass('is-select');
+	}
 })
 
 $('.I-item').find('.reduction').on('click', function(){

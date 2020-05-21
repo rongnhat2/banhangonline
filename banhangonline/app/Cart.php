@@ -5,41 +5,45 @@ namespace App;
 class Cart
 {
 	public $items = null;
+	public $totalQty = 0;
 
 	public function __construct($oldCart){
 		if($oldCart){
 			$this->items = $oldCart->items;
+			$this->totalQty = $oldCart->totalQty;
 		}
 	}
 
 	public function add($item){
-        $name = $item->cart_name;
-        $id = $item->cart_id;
-        // dd($item->cart_id);
-        $giohang = ['qty'=>0, 'name' => $name];
-        if($this->items){
-            if(array_key_exists($id, $this->items)){
-                $giohang = $this->items[$id];
-            }
-        }
-        $giohang['qty']++;
-        $this->items[$id] = $giohang;
+        // $name = 'name';
+        $id = $item->item_id;
+        $prices = $item->item_prices;
+        $size = $item->item_size;
+        
+        // dd($amount);
+        $giohang = ['qty'=> 1, 'id' => $id, 'prices' => $prices, 'size' => $size];
+        $this->totalQty += 1;
+        $this->items[$id.'-'.$size] = $giohang;
     }
 
-    //xóa 1
-	public function reduceByOne($id){
-		$this->items[$id]['qty']--;
-		$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
-		$this->totalQty--;
-		$this->totalPrice -= $this->items[$id]['item']['price'];
-		if($this->items[$id]['qty']<=0){
-			unset($this->items[$id]);
-		}
+	// Xóa Sản Phẩm
+	public function removeItem($id, $amount, $size){
+		// dd($this->items[$id]);
+		$this->totalQty -= $amount;
+		// dd($this->totalQty);
+		// $this->totalQty -= $this->items[$id]['qty'];
+		// $this->totalPrice -= $this->items[$id]['price'];
+		unset($this->items[$id.'-'.$size]);
 	}
-	//xóa nhiều
-	public function removeItem($id){
-		$this->totalQty -= $this->items[$id]['qty'];
-		$this->totalPrice -= $this->items[$id]['price'];
-		unset($this->items[$id]);
+
+	// Cập Nhật Sản Phẩm
+	public function UpdateAmount($id, $amount, $size){
+		// dd($this->items[$id]);
+		$this->totalQty += $amount;
+		$this->items[$id.'-'.$size]['qty'] += $amount;
+		// dd($this->totalQty);
+		// $this->totalQty -= $this->items[$id]['qty'];
+		// $this->totalPrice -= $this->items[$id]['price'];
+		// unset($this->items[$id]);
 	}
 }

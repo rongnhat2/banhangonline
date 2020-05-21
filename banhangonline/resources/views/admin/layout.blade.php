@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 		<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+		<script src="{{ url('user/js/chosen.jquery.min.js') }}"></script>
+		<link rel="stylesheet" href="{{ url('user/css/chosen.min.css') }}"/>
 	</head>
 	<body> 
         <video preload="auto" autoplay="autoplay" loop="loop"> 
@@ -29,9 +31,20 @@
 						<a href="#" class="notification">
 							<i class="far fa-bell"></i>
 						</a>
+							@if(Session::has('customer'))
+								<?php echo Session::get('customer')->customer['username'] ?>
+							@endif 
 						<a href="#" class="user">
 							<i class="far fa-user"></i>
 						</a>
+						<a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
 					</div>
 				</div>
 			</div>
@@ -43,27 +56,16 @@
 								<div class="link_nav">
 									<i class="fas fa-home"></i>
 								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										Trang chủ
-									</a>
-									<a href="#" class="sub_item">
-										Trang Cá Nhân
-									</a>
-									<a href="/category" class="sub_item">
-										Danh mục
-									</a>
-								</div>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/category" class="link_nav">
+									<i class="fas fa-bookmark"></i>
+								</a>
+							</div>
+							<div class="item_nav">
+								<a href="/item" class="link_nav">
 									<i class="fas fa-archive"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
 								<div class="link_nav">
@@ -101,14 +103,14 @@
 								</div>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/warehouse" class="link_nav">
+									<i class="fas fa-download"></i>
+								</a>
+							</div>
+							<div class="item_nav">
+								<a href="/gallery" class="link_nav">
 									<i class="fas fa-images"></i>
-								</div>
-								<div class="dropdown">
-									<a href="/gallery" class="sub_item">
-										Thư Viện Ảnh
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
 								<div class="link_nav">
@@ -139,6 +141,8 @@
 	</body>
 	<script src="{{ asset('js/bootstrap3.js') }}"></script>
 	<script src="{{ asset('js/effect_custom.js') }}"></script>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </html>
 
 

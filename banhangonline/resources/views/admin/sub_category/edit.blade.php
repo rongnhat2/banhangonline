@@ -16,33 +16,21 @@
 								Tên Danh Mục
 							</div>
 							<div class="input_form">
-								<input type="text" name="category_name" value="{{ $category->category_name }}">
+								<input type="text" name="sub_category_name" value="{{ $sub_category->sub_category_name }}">
 							</div>
 						</div>
 						<div class="input_wrapper">
 							<div class="input_title flexY">
-								Select
+								Hình Ảnh
 							</div>
-							<div class="select_form">
-								<div class="select_wrapper">
-									<input type="hidden" name="select_index" class="select_index" value="<?php echo $category->category_status ?>">
-									<input type="hidden" name="select_value" class="select_value">
-									<div class="select_item">
-										<?php if ($category->category_status == 1): ?>
-											Hiển Thị
-										<?php elseif ($category->category_status == 0): ?>
-											Tạm Ẩn
-										<?php endif ?>
-									</div>
-									<div class="select_icon">
-										<i class="fas fa-caret-down"></i>
-									</div>
-									<div class="option_wrapper"> </div>
+							<div class="input_form image_loader">
+								<label class="W100" data-toggle="modal" data-target="#myModal">
+									<i class="fas fa-upload"></i>
+								</label>
+								<div class="image_loading">
+									<img src="{{ asset($sub_category->sub_category_image) }}" >
 								</div>
-								<select>
-									<option>Tạm Ẩn</option>
-									<option>Hiển Thị</option>
-								</select>
+								<input type="text" name="sub_category_image" value="<?php echo $sub_category->sub_category_image ?>" style="display: none;">
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -54,6 +42,35 @@
 				</div>
 			</div>
 		</form>
+		<div id="myModal" class="modal fade" role="dialog">
+		  	<div class="modal-dialog">
+		    <!-- Modal content-->
+			    <div class="modal-content">
+			      	<div class="modal-body" style="overflow: hidden;">
+						<?php foreach ($gallery as $key => $value): ?>
+							<div class="I-image">
+								<div class="image_wrapper">
+									<img src="{{asset($value->image_url)}}">
+								</div>
+								<div class="image_url">
+									{{asset($value->image_url)}}
+								</div>
+								<div class="image_title">
+									<?php echo $value->image_name ?>
+								</div>
+							</div>
+						<?php endforeach ?>
+			      	</div>
+			    </div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('.I-image').on('click', function(e){
+				var image = $(this).find('.image_url').text()
+		        $('.image_loading').find('img').attr('src', image)
+		        $('.image_loader').find('input').attr('value', image)
+			})
+		</script>
 	</div>
 </div>
 				

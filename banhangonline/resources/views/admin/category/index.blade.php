@@ -19,31 +19,25 @@
 					        <th>ID</th>
 					        <th>Tên Danh Mục</th>
 					        <th>Số Lượng Sản Phẩm</th>
-					        <th>Trạng Thái</th>
 					        <th>Danh Mục Phụ</th>
 					        <th>Sửa</th>
 					        <th>Xóa</th>
 				      	</tr>
 			    	</thead>
 			    	<tbody>
-               			@foreach($categories as $category)
+               			@foreach($all_category as $category)
 				      	<tr>
 					        <td>{{ $loop->index + 1 }}</td>
 					        <td>{{ $category->category_name }}</td>
-					        <td>{{ $category->category_name }}</td>
 					        <td>
-					        	<?php if ( $category->category_status  == 1): ?>
-						        	<div class="status_table bg_success text_light">
-						        		Hiển Thị
-						        	</div>
-					        	<?php elseif( $category->category_status  == 0): ?>
-						        	<div class="status_table bg_danger text_light">
-						        		Tạm Ẩn
-						        	</div>
-					       		<?php endif ?>
-					        </td>
+					        	<?php if (empty ($count_item[$category->id][0])): ?>
+						        	<?php echo 0 ?>
+					        	<?php else:  ?>
+					        		<?php echo $count_item[$category->id][0]->total ?>
+						        <?php endif ?>
+						    </td>
 					        <td>
-					        	<a href="{{ route('sub_category.edit', ['id' => $category->id]) }}" class="action_table">
+					        	<a href="{{ route('sub_category.index', ['c_id' => $category->id]) }}" class="action_table">
 					        		<i class="far fa-edit"></i>
 					        	</a>
 					        </td>

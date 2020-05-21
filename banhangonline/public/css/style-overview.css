@@ -36,6 +36,9 @@ a:hover{
     height: 100%;
     margin: auto;
 }
+.overflow-visible{
+    overflow: visible !important;
+}
 header{
     position: fixed;
     top: 0;
@@ -81,6 +84,10 @@ main{
     float: left;
     width: 25%;
 }
+.I-layout .layout_wrapper_05{
+    float: left;
+    width: 20%;
+}
 .I-layout .layout_wrapper_06{
     float: left;
     width: 16.6666%;
@@ -89,7 +96,9 @@ main{
     float: left;
     width: 12.5%;
 }
-
+.pd-0{
+    padding: 0 !important;
+}
 .I-color{
     width: 100%;
     overflow: hidden;

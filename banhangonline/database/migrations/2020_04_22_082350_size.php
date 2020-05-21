@@ -15,7 +15,9 @@ class Size extends Migration
     {
         Schema::create('size', function (Blueprint $table) {
             $table->id();
+            $table->integer('item_id');
             $table->string('size_name');
+            $table->integer('item_size_amount');
             $table->timestamps();
         });
     }

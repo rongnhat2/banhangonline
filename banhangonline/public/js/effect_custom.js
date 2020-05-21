@@ -49,12 +49,15 @@ $('.select_form').on('mouseleave', function() {
 })
 $( ".select_form" ).each(function( index ) {
   	var option = []; 
+  	var id = [];
   	$(this).find('option').each(function(i, selected){ 
         option[i] = $(selected).text(); 
+        id[i] = $(selected).attr('value'); 
     });
+    // console.log(id)
   	for (var i = 0; i < option.length; i++) {
   		$(this).parent().find('.option_wrapper').append(
-			'<div class="option_item">'
+			'<div class="option_item" value="'+id[i]+'">'
 			+	'<div class="option_text">'
 			+ 		option[i]
 			+ 	'</div>'
@@ -64,9 +67,12 @@ $( ".select_form" ).each(function( index ) {
 	$('.option_item').on('click', function(){
 		var value = $(this).find('.option_text').text()
 		var index = $(this).index()
+		var option_id = $(this).attr('value')
+		// var index = $(this).attr('value')
 		$(this).parent().parent().find('.select_item').text(value)
 		$(this).parent().parent().find('.select_value').val(value)
 		$(this).parent().parent().find('.select_index').val(index)
+		$(this).parent().parent().find('.select_option_id').val(option_id)
 	})
 });
 // $(".text_color").click(function(event){
@@ -78,5 +84,44 @@ $( ".select_form" ).each(function( index ) {
 //     window.getSelection().removeAllRanges();// to deselect
 // });
 
+
+// copy clipboard multi
+$('.I-image').click(function(event){
+	// console.log(this)
+	// console.log($(this).find(".image_url")[0])
+	var item = $(this).find(".image_url")[0];
+    var range = document.createRange();
+    range.selectNode(item);
+    window.getSelection().removeAllRanges(); // clear current selection
+    window.getSelection().addRange(range); // to select text
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();// to deselect
+});
+
+
+$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+        	    	$('.upload-image').append(
+						'<div class="I-image">' +
+						'	<div class="image_wrapper">' +
+								'<img src="'+ event.target.result +'">'	+
+						'	</div>' +
+						'</div>'					
+			    		); 
+                    }
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    };
+    $('#LoadImage').on('change', function() {
+        imagesPreview(this, '.upload-image');
+    });
+});
 
 

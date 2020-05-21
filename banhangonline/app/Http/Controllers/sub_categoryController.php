@@ -6,27 +6,44 @@ use Illuminate\Http\Request;
 use Hash;
 use DB;
 use App\Sub_category;
+use App\Gallery;
 
 class sub_categoryController extends Controller
 {
     private $Sub_category;
 
-    public function __construct(Sub_category $Sub_category)
+    public function __construct(Sub_category $Sub_category, Gallery $gallery)
     {
         $this->Sub_category = $Sub_category;
+        $this->gallery = $gallery;
     }
 
 
     public function index($c_id)
     {
-        $categories = DB::table('category')->get();
-        return view('admin.sub_category.index', compact('categories'));
+        $total_item = DB::raw('count(*) as total');
+
+        // lấy tất cả danh mục
+        $sub_category = DB::table('sub_category')->where('category_id', '=', $c_id)->get();
+        $count_item = [];
+
+        // thống kê số lượng sản phẩm
+        foreach ($sub_category as $key => $value) {
+            $count_item[$value->id] = 0;
+            $count_item[$value->id] = DB::table('item')
+                                        ->where('item.sub_category_id', '=', $value->id)
+                                        ->select( $total_item)
+                                        ->groupBy('item.sub_category_id')
+                                        ->get();
+        }
+        // dd($c_id);
+        return view('admin.sub_category.index', compact('sub_category', 'count_item', 'c_id'));
     }
 
     public function create($c_id)
     {
-        $categories = $this->category->all();
-        return view('admin.category.add', compact('categories'));
+        $gallery = $this->gallery->all();
+        return view('admin.sub_category.add', compact('gallery', 'c_id'));
     }
 
     public function store(Request $request){
@@ -34,14 +51,17 @@ class sub_categoryController extends Controller
     	try {
             DB::beginTransaction();
             // Insert data to user table
-            $categoryCreate = $this->category->create([
-                'category_name' => $request->category_name,
-                'category_status' => '1',
+            $categoryCreate = $this->Sub_category->create([
+                'category_id' => $request->category_id,
+                'sub_category_name' => $request->sub_category_name,
+                'sub_category_image' => $request->sub_category_image,
+                'sub_category_status' => '1',
             ]);
 
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('sub_category.index', ['c_id' => $request->category_id]);
         } catch (\Exception $exception) {
+            dd($exception);
             DB::rollBack();
         }
     }
@@ -52,8 +72,10 @@ class sub_categoryController extends Controller
      */
     public function edit($c_id ,$id)
     {
-        $category = $this->category->findOrfail($id);
-        return view('admin.category.edit', compact('category'));
+        $gallery = $this->gallery->all();
+        $sub_category = $this->Sub_category->findOrfail($id);
+        // dd($sub_category);
+        return view('admin.sub_category.edit', compact('gallery', 'sub_category', 'c_id', 'id'));
     }
 
     /**
@@ -62,21 +84,22 @@ class sub_categoryController extends Controller
      * @return mixed
      */
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $c_id ,$id)
     {
+        // dd($request .' '. $c_id .' '. $id);
         try {
             DB::beginTransaction();
             // update user tabale
-            $this->category->where('id', $id)->update([
-                'category_name' => $request->category_name,
-                // 'category_status' => $request->category_status
-                'category_status' => $request->select_index,
+            $this->Sub_category->where('id', $id)->update([
+                'category_id' => $c_id,
+                'sub_category_name' => $request->sub_category_name,
+                'sub_category_image' => $request->sub_category_image,
             ]);
 
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('sub_category.index', ['c_id' => $c_id]);
         } catch (\Exception $exception) {
-
+            dd($exception);
             DB::rollBack();
         }
 
@@ -84,15 +107,15 @@ class sub_categoryController extends Controller
     }
 
 
-    public function delete($id)
+    public function delete($c_id ,$id)
     {
         try {
             DB::beginTransaction();
             // Delete category
-            $category = $this->category->find($id);
+            $category = $this->Sub_category->find($id);
             $category->delete($id);
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('sub_category.index', ['c_id' => $c_id]);
         } catch (\Exception $exception) {
             DB::rollBack();
         }
