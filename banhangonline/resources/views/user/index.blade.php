@@ -158,128 +158,26 @@
 						<div class="best_searching_wrapper">
 							<div class="best_searching_header">
 								<div class="title">
-									Tìm kiếm phổ biến
+									Danh Mục phổ biến
 								</div>
 							</div>
 							<div class="best_searching_content">
 								<div class="best_searching_list_item">
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/sweater.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												sweater
+									<?php foreach ($category_trending as $key => $value): ?>
+										<a href="{{ route('customer.subcategory', ['id' => $value->category_id, 's_id' => $value->id]) }}" class="best_searching_item">
+											<div class="image">
+												<img src="{{ asset($value->sub_category_image) }}">
 											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
+											<div class="content">
+												<div class="title">
+													<?php echo $value->sub_category_name ?>
+												</div>
+												<div class="count_item">
+													<?php echo number_format($value->count) ?> Sản Phẩm <br> <?php echo number_format($value->sub_category_view) ?> Lượt Xem
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/somi.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												somi
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/thun.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												thun
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/croptop.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												croptop
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/sweater.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												sweater
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/jogger.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												jogger
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/sweater.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												sweater
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/somi.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												somi
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
-									<div class="best_searching_item">
-										<div class="image">
-											<img src="images/khoac_01.png">
-										</div>
-										<div class="content">
-											<div class="title">
-												khoac_01
-											</div>
-											<div class="count_item">
-												11.111 Sản Phẩm
-											</div>
-										</div>
-									</div>
+										</a>
+									<?php endforeach ?>
 								</div>
 							</div>
 						</div>
@@ -293,116 +191,34 @@
 									Bộ Sưu Tập
 								</div>
 								<div class="show_more">
-									<a href="">Xem thêm</a>
+									<a href="{{ route('customer.allcombo') }}">Xem thêm</a>
 								</div>
 							</div>
 							<div class="gallery_content">
 								<div class="gallery_list_item">
-									<div class="gallery_item">
-										<div class="content">
-											<div class="title">
-												Combo Mùa Đông
+									<?php foreach ($combo as $key => $value): ?>
+										<a href="{{ route('customer.subcombo', ['id' => $value->id]) }}" class="gallery_item">
+											<div class="content">
+												<div class="title">
+													<?php echo $value->combo_item_name ?>
+												</div>
+												<!-- <div class="count_item">
+													11.111 Combo
+												</div> -->
 											</div>
-											<div class="count_item">
-												11.111 Combo
+											<div class="listimage">
+												<div class="image">
+													<img src="{{ asset($value->item_image_01) }}">
+												</div>
+												<div class="image">
+													<img src="{{ asset($value->item_image_02) }}">
+												</div>
+												<div class="image">
+													<img src="{{ asset($value->item_image_03) }}">
+												</div>
 											</div>
-										</div>
-										<div class="listimage">
-											<div class="image">
-												<img src="images/item_01.png">
-											</div>
-											<div class="image">
-												<img src="images/item_02.png">
-											</div>
-											<div class="image">
-												<img src="images/item_03.png">
-											</div>
-										</div>
-									</div>
-									<div class="gallery_item">
-										<div class="content">
-											<div class="title">
-												Combo Mùa Đông
-											</div>
-											<div class="count_item">
-												11.111 Combo
-											</div>
-										</div>
-										<div class="listimage">
-											<div class="image">
-												<img src="images/item_01.png">
-											</div>
-											<div class="image">
-												<img src="images/item_02.png">
-											</div>
-											<div class="image">
-												<img src="images/item_03.png">
-											</div>
-										</div>
-									</div>
-									<div class="gallery_item">
-										<div class="content">
-											<div class="title">
-												Combo Mùa Đông
-											</div>
-											<div class="count_item">
-												11.111 Combo
-											</div>
-										</div>
-										<div class="listimage">
-											<div class="image">
-												<img src="images/item_01.png">
-											</div>
-											<div class="image">
-												<img src="images/item_02.png">
-											</div>
-											<div class="image">
-												<img src="images/item_03.png">
-											</div>
-										</div>
-									</div>
-									<div class="gallery_item">
-										<div class="content">
-											<div class="title">
-												Combo Mùa Đông
-											</div>
-											<div class="count_item">
-												11.111 Combo
-											</div>
-										</div>
-										<div class="listimage">
-											<div class="image">
-												<img src="images/item_01.png">
-											</div>
-											<div class="image">
-												<img src="images/item_02.png">
-											</div>
-											<div class="image">
-												<img src="images/item_03.png">
-											</div>
-										</div>
-									</div>
-									<div class="gallery_item">
-										<div class="content">
-											<div class="title">
-												Combo Mùa Đông
-											</div>
-											<div class="count_item">
-												11.111 Combo
-											</div>
-										</div>
-										<div class="listimage">
-											<div class="image">
-												<img src="images/item_01.png">
-											</div>
-											<div class="image">
-												<img src="images/item_02.png">
-											</div>
-											<div class="image">
-												<img src="images/item_03.png">
-											</div>
-										</div>
-									</div>
+										</a>
+									<?php endforeach ?>
 								</div>
 							</div>
 						</div>

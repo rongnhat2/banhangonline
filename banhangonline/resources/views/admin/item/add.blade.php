@@ -25,115 +25,18 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-									<div class="select_form">
-										<div class="select_wrapper">
-											<input type="hidden" name="category_index" class="select_index">
-											<input type="hidden" name="category_value" class="select_value">
-											<input type="hidden" name="category_id" class="select_option_id">
-											<div class="select_item"> </div>
-											<div class="select_icon">
-												<i class="fas fa-caret-down"></i>
-											</div>
-											<div class="option_wrapper">
-
-											</div>
-										</div>
-										<select>
-				                			@foreach($categories as $category)
-												<option value="<?php echo $category->id ?>">{{ $category->category_name }}</option>
-				                			@endforeach
-										</select>
-									</div>
+									<select class="chosen-select search_select category_id" name="category_id">
+			                			@foreach($categories as $category)
+											<option value="<?php echo $category->id ?>">{{ $category->category_name }}</option>
+			                			@endforeach
+									</select>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-									<div class="select_form">
-										<div class="select_wrapper">
-											<input type="hidden" name="sub_category_index" class="select_index">
-											<input type="hidden" name="sub_category_value" class="select_value">
-											<input type="hidden" name="sub_category_id" class="select_option_id">
-											<div class="select_item"> </div>
-											<div class="select_icon">
-												<i class="fas fa-caret-down"></i>
-											</div>
-											<div class="option_wrapper">
-
-											</div>
-										</div>
-										<select>
-				                			@foreach($sub_category as $value)
-												<option value="<?php echo $value->id ?>">{{ $value->sub_category_name }}</option>
-				                			@endforeach
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="input_wrapper" style="display: none;">
-							<div class="checkbox_item_wrapper">
-								<div class="checkbox_item layout_wrapper_05">
-									<div class="I-checkbox checkbox pd-0">
-										<label>
-											<div class="rect">
-												<i class="fas fa-check"></i>
-											</div>
-											<div class="text">
-												S
-											</div>
-										</label>
-										<input type="checkbox" name="size[]" value="S" checked>
-									</div>
-								</div>
-								<div class="checkbox_item layout_wrapper_05">
-									<div class="I-checkbox checkbox pd-0">
-										<label>
-											<div class="rect">
-												<i class="fas fa-check"></i>
-											</div>
-											<div class="text">
-												M
-											</div>
-										</label>
-										<input type="checkbox" name="size[]" value="M" checked>
-									</div>
-								</div>
-								<div class="checkbox_item layout_wrapper_05">
-									<div class="I-checkbox checkbox pd-0">
-										<label>
-											<div class="rect">
-												<i class="fas fa-check"></i>
-											</div>
-											<div class="text">
-												L
-											</div>
-										</label>
-										<input type="checkbox" name="size[]" value="L" checked>
-									</div>
-								</div>
-								<div class="checkbox_item layout_wrapper_05">
-									<div class="I-checkbox checkbox pd-0">
-										<label>
-											<div class="rect">
-												<i class="fas fa-check"></i>
-											</div>
-											<div class="text">
-												XL
-											</div>
-										</label>
-										<input type="checkbox" name="size[]" value="XL" checked>
-									</div>
-								</div>
-								<div class="checkbox_item layout_wrapper_05">
-									<div class="I-checkbox checkbox pd-0">
-										<label>
-											<div class="rect">
-												<i class="fas fa-check"></i>
-											</div>
-											<div class="text">
-												XXL
-											</div>
-										</label>
-										<input type="checkbox" name="size[]" value="XXL" checked>
-									</div>
+									<select class="chosen-select search_select sub_category_id" name="sub_category_id">
+			                			@foreach($sub_category as $value)
+											<option value="<?php echo $value->id ?>" class="sub_category_item">{{ $value->sub_category_name }}</option>
+			                			@endforeach
+									</select>
 								</div>
 							</div>
 						</div>
@@ -142,7 +45,8 @@
 								Đơn Giá
 							</div>
 							<div class="input_form">
-								<input type="number" name="item_prices" required="">
+								<input type="text" name="item_prices" required="" pattern="[0-9]*"
+								title="Vui lòng nhập vào một số nguyên dương">
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -156,7 +60,7 @@
 								<div class="image_loading">
 									<img src="" >
 								</div>
-								<input type="text" name="item_image" value="" style="display: none;">
+								<input type="text" name="item_image" value="" style="display: none;" required>
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -186,32 +90,15 @@
 		  	<div class="modal-dialog">
 		    <!-- Modal content-->
 			    <div class="modal-content">
-			      	<div class="modal-body" style="overflow: hidden;">
-						<?php foreach ($gallery as $key => $value): ?>
-							<div class="I-image">
-								<div class="image_wrapper">
-									<img src="{{asset($value->image_url)}}">
-								</div>
-								<div class="image_url">
-									{{asset($value->image_url)}}
-								</div>
-								<div class="image_title">
-									<?php echo $value->image_name ?>
-								</div>
-							</div>
-						<?php endforeach ?>
+			      	<div class="modal-body list_image_library" style="overflow: hidden;">
+
 			      	</div>
 			    </div>
 			</div>
 		</div>
-		<script type="text/javascript">
-			$('.I-image').on('click', function(e){
-				var image = $(this).find('.image_url').text()
-		        $('.image_loading').find('img').attr('src', image)
-		        $('.image_loader').find('input').attr('value', image)
-			})
-		</script>
 	</div>
 </div>
+<script src="{{ asset('js/library.js') }}"></script>
+<script src="{{ asset('js/item_add.js') }}"></script>
 				
 @endsection()

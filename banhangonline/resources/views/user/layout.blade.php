@@ -49,6 +49,7 @@
 			                    </form>
 			            	</div>
 			            	@endguest
+			            	<a href="{{ route('customer.checkout') }}">Đi tới giỏ hàng</a>
 						</div>
 					</div>
 					<div class="logo">

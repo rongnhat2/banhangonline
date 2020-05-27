@@ -38,6 +38,65 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.I-login_wrapper{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.I-login_wrapper .bg_wrapper{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.I-login_wrapper .bg_wrapper .top{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	z-index: 2;
+}
+.I-login_wrapper .bg_wrapper .image{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+.I-login_wrapper .bg_wrapper .image img{
+	width: 100%;
+}
+.I-login_wrapper .form_login{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.I-login_wrapper .form_login form{
+	width: 500px;
+	background-color: rgba(255, 255, 255, .9);
+	border-radius: 5px;	
+	padding: 50px 30px;
+}
+
 .I-user_nav{
 	width: 100%;
 	height: auto;
@@ -174,6 +233,14 @@
 .I-form_input .form_input_wrapper .form_input .body_form .input_wrapper .input_form{
 	width: 100%;
 	/*overflow: hidden;*/
+}
+.I-form_input .form_input_wrapper .form_input .body_form .input_wrapper .input_form select{
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 40px;
+	padding: 0 10px;
+	border-radius: 5px;
+	font-size: 16px;
 }
 .I-form_input .form_input_wrapper .form_input .body_form .input_wrapper .input_form input{
 	border: 1px solid #ccc;
@@ -534,4 +601,31 @@
 }
 .update_discount{
 	cursor: pointer;
+}
+.search_table{
+
+}
+.search_table input{
+	width: 100%;
+	height: 32px;
+}
+.search_table button{
+	width: 100%;
+	height: 32px;
+}
+.combo_image{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.combo_image .item_image{
+	width: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 10px;
+}
+.combo_image .item_image img{
+	width: 50px;
+	height: 50px;
 }

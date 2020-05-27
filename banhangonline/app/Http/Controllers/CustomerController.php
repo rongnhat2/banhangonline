@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request);
         try {
             DB::beginTransaction();
 
@@ -33,12 +33,8 @@ class CustomerController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
-            DB::table('user_classify')->insert([
-                'user_id' => $id,
-                'classify_id' => '1'
-            ]);
             DB::table('user_detail')->insert([
-                'user_id' => $id,
+                'users_id' => $id,
                 'phone' => $request->phone,
                 'address' => $request->address,
             ]);
@@ -46,6 +42,7 @@ class CustomerController extends Controller
             DB::commit();
             return redirect()->route('customer.login');
         } catch (\Exception $exception) {
+            dd($exception);
 			Session::flash('error', 'Email đã tồn tại');
             return redirect()->route('customer.register');
         }

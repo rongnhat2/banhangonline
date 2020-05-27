@@ -27,23 +27,6 @@
 						<div class="input_wrapper">
 							<div class="row">
 								<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-									<!-- <div class="select_form">
-										<div class="select_wrapper">
-											<input type="hidden" name="category_index" class="select_index" required>
-											<input type="hidden" name="category_value" class="select_value" required>
-											<input type="hidden" name="category_id" class="select_option_id" required>
-											<div class="select_item"> </div>
-											<div class="select_icon">
-												<i class="fas fa-caret-down"></i>
-											</div>
-											<div class="option_wrapper chosen-select"> </div>
-										</div>
-										<select>
-				                			@foreach($items as $item)
-												<option value="<?php echo $item->id ?>">{{ $item->item_name }}</option>
-				                			@endforeach
-										</select>
-									</div> -->
 									<select class="chosen-select search_select" name="category_id">
 									    <option value=""></option>
 									    <?php foreach ($items as $key => $value): ?>

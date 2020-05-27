@@ -93,7 +93,9 @@ class ItemController extends Controller
         $categories = DB::table('category')->get();
 
         // lấy ra danh mục phụ
-        $sub_category = DB::table('sub_category')->get();
+        $sub_category = DB::table('sub_category')
+            ->where('category_id', '=', $items->category_id)
+            ->get();
 
         // lấy ra thư viện ảnh
         $gallery = $this->gallery->all();
@@ -110,11 +112,11 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         try {
             DB::beginTransaction();
             // update user tabale
             $this->item->where('id', $id)->update([
-                'category_id' => $request->category_id,
                 'sub_category_id' => $request->sub_category_id,
                 'item_name' => $request->item_name,
                 'item_prices' => $request->item_prices,
@@ -147,4 +149,35 @@ class ItemController extends Controller
         }
 
     }
+
+    // ajax item
+    public function getItem(Request $request)
+    {   
+        $item = DB::table('item')
+            ->join('category', 'item.category_id', '=', 'category.id')
+            ->join('sub_category', 'item.sub_category_id', '=', 'sub_category.id')
+            ->select('item.*', 'sub_category.sub_category_name', 'category.category_name')
+            ->when(!empty($request->value[0]), function ($query) use ($request) {
+                return $query->where('item.item_name', 'like', '%'.$request->value[0].'%');
+            })
+            ->when(!empty($request->value[1]), function ($query) use ($request) {
+                return $query->where('category.category_name', 'like', '%'.$request->value[1].'%');
+            })
+            ->when(!empty($request->value[2]), function ($query) use ($request) {
+                return $query->where('sub_category.sub_category_name', 'like', '%'.$request->value[2].'%');
+            })
+            ->get();
+        return $item;
+    }
+
+    // ajax sub_category
+    public function getSubcategory(Request $request)
+    {   
+        $item = DB::table('sub_category')
+            ->where('category_id', '=', $request->value)
+            ->get();
+        return $item;
+    }
+
+
 }

@@ -102,6 +102,10 @@ class GalleryController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
         }
-
+    }
+    public function getLibrary()
+    {
+        $gallery = DB::table('gallery')->get();
+        return $gallery;
     }
 }

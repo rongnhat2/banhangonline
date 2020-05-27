@@ -61,19 +61,19 @@
 					</div>
 				  	<div class="form-group">
 				    	<label for="username">Họ Và Tên</label>
-				    	<input type="text" class="form-control" id="username" name="name" required value="">
+				    	<input type="text" class="form-control" id="username" name="name" required value="{{ $user != null ? $user->name : '' }}">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="email">Email :</label>
-				    	<input type="email" class="form-control" id="email" name="email" required>
+				    	<input type="email" class="form-control" id="email" name="email" required value="{{ $user != null ? $user->email : '' }}">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="phone">Số Điện Thoại</label>
-				    	<input type="text" class="form-control" id="phone" name="phone" required>
+				    	<input type="text" class="form-control" id="phone" name="phone" required value="{{ $user != null ? $user->phone : '' }}">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="address">Địa Chỉ</label>
-				    	<input type="text" class="form-control" id="address" name="address" required>
+				    	<input type="text" class="form-control" id="address" name="address" required value="{{ $user != null ? $user->address : '' }}">
 				  	</div>
 			        @guest
 		  				<a href="{{ route('customer.getLoginOrder') }}" class="btn btn-default">Bạn Đã Có Tài Khoản ?</a>

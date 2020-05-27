@@ -23,19 +23,30 @@
 					</div>
 				</div>
 				<table class="table table-bordered" id="myTable">
-			    	<thead>
+			    	<thead class="search_table">
 			      		<tr>
-					        <th onclick="sortListDir(0)">ID</th>
-					        <th onclick="sortListDir(1)">Tên Người Nhập Kho</th>
-					        <th onclick="sortListDir(2)">Tên Sản Phẩm </th>
-					        <th onclick="sortListDir(3)">Loại </th>
-					        <th onclick="sortListDir(4)">Số Lượng Sản Phẩm</th>
-					        <th onclick="sortListDir(5)">Thời Gian</th>
+					        <th></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="date" name=""></th>
+					        <th><button class="search_button warehouse">Tìm Kiếm</button></th>
 				      	</tr>
 			    	</thead>
-			    	<tbody>
+			    	<thead>
+			      		<tr>
+					        <th onclick="sortListDir(0, 2)">ID</th>
+					        <th onclick="sortListDir(1, 2)">Tên Người Nhập Kho</th>
+					        <th onclick="sortListDir(2, 2)">Tên Sản Phẩm </th>
+					        <th onclick="sortListDir(3, 2)">Loại </th>
+					        <th onclick="sortListDir(4, 2)">Số Lượng Sản Phẩm</th>
+					        <th onclick="sortListDir(5, 2)">Thời Gian</th>
+				      	</tr>
+			    	</thead>
+			    	<tbody class="list_output">
                			@foreach($warehouse as $value)
-				      	<tr>
+				      	<tr class="item_output">
 					        <td>{{ $loop->index + 1 }}</td>
 					        <td>{{ $value->username }}</td>
 					        <td>{{ $value->item_name }}</td>
@@ -50,6 +61,7 @@
 		</div>
 	</div>
 </div>
-<script src="{{ asset('js/warehouse.js') }}"></script>
+<script src="{{ asset('js/table.js') }}"></script>		
+<script src="{{ asset('js/sort_table.js') }}"></script>
 				
 @endsection()

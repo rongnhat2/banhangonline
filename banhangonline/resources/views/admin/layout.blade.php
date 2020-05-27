@@ -16,7 +16,7 @@
 	</head>
 	<body> 
         <video preload="auto" autoplay="autoplay" loop="loop"> 
-            <source src="{{ asset('images/10.webm') }}" type="video/mp4"> 
+            <!-- <source src="{{ asset('images/10.webm') }}" type="video/mp4">  -->
         </video>
 		<header>
 			<div class="I-user_header">
@@ -79,21 +79,6 @@
 							</div>
 							<div class="item_nav">
 								<div class="link_nav">
-									<i class="fas fa-bookmark"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										
-									</a>
-								</div>
-							</div>
-							<div class="item_nav">
-								<div class="link_nav">
-									<i class="fas fa-clone"></i>
-								</div>
-							</div>
-							<div class="item_nav">
-								<div class="link_nav">
 									<i class="fas fa-comment"></i>
 								</div>
 							</div>
@@ -101,6 +86,11 @@
 								<div class="link_nav">
 									<i class="fas fa-file"></i>
 								</div>
+							</div>
+							<div class="item_nav">
+								<a href="/comboitem" class="link_nav">
+									<i class="fas fa-clone"></i>
+								</a>
 							</div>
 							<div class="item_nav">
 								<a href="/warehouse" class="link_nav">

@@ -101,12 +101,12 @@
 									</div>
 									<input type="hidden" name="" class="value_input">
 								</div> -->
-								<div class="item_button add_to_cart">
-									<a id_cart="<?php echo $item->id ?>" class="Add_to_cart" style="cursor: pointer;">Thêm Vào Giỏ Hàng</a>
+								<div class="item_button">
+									<a href="{{ route('customer.checkout') }}" style="cursor: pointer;">Đi tới giỏ hàng</a>
 								</div>
-								<div class="item_button buying">
+								<!-- <div class="item_button buying">
 									<a href="">Đặt Hàng</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>

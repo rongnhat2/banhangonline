@@ -48,7 +48,7 @@
 				<div class="I-sub_category_list">
 					<div class="title">
 						<div class="name">
-							Danh mục đang chọn : <span><a href="{{ route('customer.category', ['id' => $this_category->id]) }}" style="color: #000;"><?php echo $this_category->category_name ?></a><?php echo "   ----   " ?><?php echo $this_sub_category->sub_category_name ?></span>
+							Danh mục  : <span><a href="{{ route('customer.category', ['id' => $this_category->id]) }}" style="color: #000;"><?php echo $this_category->category_name ?></a><?php echo "   ----   " ?><?php echo $this_sub_category->sub_category_name ?></span>
 						</div>
 						<div class="count">
 					        	<?php if (empty ($count_item->total)): ?>

@@ -55,7 +55,7 @@ class sub_categoryController extends Controller
                 'category_id' => $request->category_id,
                 'sub_category_name' => $request->sub_category_name,
                 'sub_category_image' => $request->sub_category_image,
-                'sub_category_status' => '1',
+                'sub_category_view' => '0',
             ]);
 
             DB::commit();
@@ -119,6 +119,5 @@ class sub_categoryController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
         }
-
     }
 }

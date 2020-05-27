@@ -83,11 +83,36 @@ class WarehouseController extends Controller
             Session::flash('success', 'Nhập Kho Thành Công');
             return redirect()->route('warehouse.index');
         } catch (\Exception $exception) {
-            dd($exception);
+            // dd($exception);
             Session::flash('error', 'Bạn Phải Thêm Ít Nhất Một Đối Tượng');
             return redirect()->route('warehouse.add');
             DB::rollBack();
         }
     }
 
+
+    // ajax warehouse
+    public function getWarehouse(Request $request)
+    {   
+        $getWarehouse = DB::table('warehouse')
+            ->join('item', 'warehouse.id_item', '=', 'item.id')
+            ->select('warehouse.*', 'item.item_name as item_name')
+            ->when(!empty($request->value[0]), function ($query) use ($request) {
+                return $query->where('warehouse.username', 'like', '%'.$request->value[0].'%');
+            })
+            ->when(!empty($request->value[1]), function ($query) use ($request) {
+                return $query->where('warehouse.item_name', 'like', '%'.$request->value[1].'%');
+            })
+            ->when(!empty($request->value[2]), function ($query) use ($request) {
+                return $query->where('warehouse.size', 'like', '%'.$request->value[2].'%');
+            })
+            ->when(!empty($request->value[3]), function ($query) use ($request) {
+                return $query->where('warehouse.qty_item', 'like', '%'.$request->value[3].'%');
+            })
+            ->when(!empty($request->value[4]), function ($query) use ($request) {
+                return $query->where('warehouse.updated_at', 'like', '%'.$request->value[4].'%');
+            })
+            ->get();
+        return $getWarehouse;
+    }
 }

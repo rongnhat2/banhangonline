@@ -15,6 +15,18 @@ class admin_seed extends Seeder
     public function run()
     {
         DB::table('permissions')->insert([
+	        'name'              => 'is-admin',
+	        'display_name' 			=> 'Là Admin',
+	        "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+	        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+	    ]);
+        DB::table('permissions')->insert([
+	        'name'              => 'is-shipper',
+	        'display_name' 			=> 'Là Shipper',
+	        "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+	        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+	    ]);
+        DB::table('permissions')->insert([
 	        'name'              => 'user-list',
 	        'display_name' 			=> 'Danh Sách Admin',
 	        "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
@@ -71,7 +83,7 @@ class admin_seed extends Seeder
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('user_detail')->insertGetId([
-            'user_id'              => $id,
+            'users_id'              => $id,
         ]);
 
 

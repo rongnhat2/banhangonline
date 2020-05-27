@@ -19,22 +19,43 @@ class CategoryController extends Controller
 
 
     public function index()
-    {
-        $total_item = DB::raw('count(*) as total');
+    {   
+        
+        // $sql    = "
+        //             SELECT category.*, item.id as id_item
+        //             FROM category 
+        //             LEFT JOIN item on category.id = item.category_id  
+        //         ";
+        // $db_run =    DB::select ($sql);
+        // // lấy tất cả danh mục
+        // $all_category = DB::table('category')
+        //         ->leftjoin('item', 'item.category_id', '=', 'category.id')
+        //         // ->when(!empty('item.id'), function ($query) {
+        //         //     return $query->where('item.id', '<>', null);
+        //         // })
+        //         ->where('item.id', '=', 2)
+        //         ->select('category.id', 'category_name',  DB::raw('count(*) as total'))
+        //         ->groupBy('category.id', 'category_name')
+        //         ->get();
+        // dd($db_run);
 
-        // lấy tất cả danh mục
+
         $all_category = DB::table('category')->get();
-        $count_item = [];
+        $total_item = DB::raw('count(*) as total');
         // thống kê số lượng sản phẩm
         foreach ($all_category as $key => $value) {
-            $count_item[$value->id] = 0;
-            $count_item[$value->id] = DB::table('item')
-                                        ->where('item.category_id', '=', $value->id)
-                                        ->select( $total_item)
-                                        ->groupBy('item.category_id')
-                                        ->get();
+            $count = DB::table('item')
+                    ->where('item.category_id', '=', $value->id)
+                    ->select( $total_item)
+                    ->groupBy('item.category_id')
+                    ->first();
+            if ($count == null) {
+                $all_category[$key]->count = 0;
+            }else{
+                $all_category[$key]->count = $count->total;
+            }
         }
-        return view('admin.category.index', compact('all_category', 'count_item'));
+        return view('admin.category.index', compact('all_category'));
     }
 
     public function create()

@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontController@index')->name('customer.index');
 Route::get('/useritem/{id}', 'FrontController@item')->name('customer.item');
 Route::get('/allcategory', 'FrontController@allcategory')->name('customer.allcategory');
+Route::get('/allcombo', 'FrontController@allcombo')->name('customer.allcombo');
+Route::get('/subcombo/{id}', 'FrontController@subcombo')->name('customer.subcombo');
 Route::get('/user-category/{id}', 'FrontController@category')->name('customer.category');
 Route::get('/user-subcategory/{id}/{s_id}', 'FrontController@subcategory')->name('customer.subcategory');
 Route::get('/checkout', 'FrontController@checkout')->name('customer.checkout');
@@ -73,6 +75,24 @@ Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['auth'])->group(function () {
 
+    // modulle category
+    Route::prefix('comboitem')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'comboitemController@index')->name('comboitem.index');
+        Route::get('/create', 'comboitemController@create')->name('comboitem.add');
+        Route::post('/create', 'comboitemController@store')->name('comboitem.store');
+        Route::get('/edit/{id}', 'comboitemController@edit')->name('comboitem.edit');
+        Route::post('/edit/{id}', 'comboitemController@update')->name('comboitem.edit');
+        Route::get('/delete/{id}', 'comboitemController@delete')->name('comboitem.delete');
+    });
+
 
     // modulle warehouse
     Route::prefix('warehouse')->group(function () {
@@ -87,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', 'WarehouseController@index')->name('warehouse.index');
         Route::get('/create', 'WarehouseController@create')->name('warehouse.add');
         Route::post('/create', 'WarehouseController@store')->name('warehouse.store');
+        Route::get('getWarehouse', 'WarehouseController@getWarehouse')->name('item.getWarehouse');
     });
 
     // modulle item
@@ -105,6 +126,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
         Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
         Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+        Route::get('getItem', 'ItemController@getItem')->name('item.getItem');
+        Route::get('getSubcategory', 'ItemController@getSubcategory')->name('item.getSubcategory');
     });
     
     // modulle gallery
@@ -123,6 +146,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
         // Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
         // Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+        Route::get('getLibrary', 'GalleryController@getLibrary')->name('discount.getLibrary');
     });
     
     // modulle category

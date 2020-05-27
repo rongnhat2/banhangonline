@@ -7,41 +7,47 @@
 			<div class="table_wrapper">
 				<div class="title_table">
 					<div class="title_name">
-						Danh Sách Danh Mục
+						Danh Sách Combo
 					</div>
 					<div class="title_side">
-						<a href="{{ route('category.add') }}" class="I-button bg_primary text_light">Thêm</a>
+						<a href="{{ route('comboitem.add') }}" class="I-button bg_primary text_light">Thêm</a>
 					</div>
 				</div>
 				<table class="table table-bordered" id="myTable">
 			    	<thead>
 			      		<tr>
 					        <th onclick="sortListDir(0, 1)">ID</th>
-					        <th onclick="sortListDir(1, 1)">Tên Danh Mục</th>
-					        <th onclick="sortListDir(2, 1)">Số Lượng Sản Phẩm</th>
-					        <th onclick="sortListDir(3, 1)">Danh Mục Phụ</th>
+					        <th onclick="sortListDir(1, 1)">Tên Combo</th>
+					        <th>Sản Phẩm</th>
 					        <th>Sửa</th>
 					        <th>Xóa</th>
 				      	</tr>
 			    	</thead>
-			    	<tbody class="list_output">
-               			@foreach($all_category as $category)
-				      	<tr class="item_output">
+			    	<tbody>
+               			@foreach($combo_item as $value)
+				      	<tr>
 					        <td>{{ $loop->index + 1 }}</td>
-					        <td>{{ $category->category_name }}</td>
-					        <td> {{ $category->count }} </td>
+					        <td>{{ $value->combo_item_name }}</td>
 					        <td>
-					        	<a href="{{ route('sub_category.index', ['c_id' => $category->id]) }}" class="action_table">
+								<div class="combo_image">
+									<div class="item_image">
+										<img src="{{ asset($value->item_image_01) }}">
+									</div>
+									<div class="item_image">
+										<img src="{{ asset($value->item_image_02) }}">
+									</div>
+									<div class="item_image">
+										<img src="{{ asset($value->item_image_03) }}">
+									</div>
+								</div>
+						    </td>
+					        <td>
+					        	<a href="{{ route('comboitem.edit', ['id' => $value->id]) }}" class="action_table">
 					        		<i class="far fa-edit"></i>
 					        	</a>
 					        </td>
 					        <td>
-					        	<a href="{{ route('category.edit', ['id' => $category->id]) }}" class="action_table">
-					        		<i class="far fa-edit"></i>
-					        	</a>
-					        </td>
-					        <td>
-					        	<a href="{{ route('category.delete', ['id' => $category->id]) }}" class="action_table">
+					        	<a href="{{ route('comboitem.delete', ['id' => $value->id]) }}" class="action_table">
 					        		<i class="far fa-trash-alt"></i>
 					        	</a>
 					        </td>
